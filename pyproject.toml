@@ -9,9 +9,6 @@ authors = [
 requires-python = ">=3.13"
 dependencies = []
 
-[project.scripts]
-boilerplate = "boilerplate:main"
-
 [dependency-groups]
 dev = [
     "hypothesis>=6.0",
