@@ -1,0 +1,51 @@
+[project]
+name = "boilerplate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Roman", email = "pochta.roman.r.git@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+boilerplate = "boilerplate:main"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.0",
+    "pre-commit>=4.0",
+    "pytest>=8.0",
+    "pytest-cov>=6.0",
+    "ruff>=0.11",
+    "ty>=0.0.1a0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+extend-exclude = [".agents", "archive_*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ty.environment]
+python-version = "3.13"
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.pytest.ini_options]
+addopts = ["--strict-config", "--strict-markers"]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["boilerplate"]
+
+[tool.coverage.report]
+show_missing = true
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
