@@ -1,13 +1,17 @@
 [project]
 name = "boilerplate"
 version = "0.1.0"
-description = "Add your description here"
+description = "A framework-free Python foundation with a repeatable quality gate"
 readme = "README.md"
+license = "MIT"
 authors = [
     { name = "Roman", email = "pochta.roman.r.git@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = []
+
+[tool.uv]
+required-version = "==0.13.6"
 
 [dependency-groups]
 dev = [
@@ -44,5 +48,5 @@ source = ["boilerplate"]
 show_missing = true
 
 [build-system]
-requires = ["uv_build>=0.12.18,<0.13.0"]
+requires = ["uv_build>=0.13.0,<0.14.0"]
 build-backend = "uv_build"
