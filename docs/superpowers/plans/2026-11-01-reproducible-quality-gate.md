@@ -37,10 +37,10 @@
 - Consumes: `boilerplate.clamp(value: int, lower: int, upper: int) -> int`
 - Produces: a property test that rejects every result except the exact clamped value
 
-- [ ] Replace the partial interval assertions with a hand-derived three-branch expected result.
-- [ ] Temporarily mutate an out-of-range branch and run the property test to prove it fails for the intended reason.
-- [ ] Restore production code and run `uv run --locked pytest tests/test_core.py`.
-- [ ] Commit as `test: strengthen clamp property contract`.
+- [x] Replace the partial interval assertions with a hand-derived three-branch expected result.
+- [x] Temporarily mutate an out-of-range branch and run the property test to prove it fails for the intended reason.
+- [x] Restore production code and run `uv run --locked pytest tests/test_core.py`.
+- [x] Commit as `test: strengthen clamp property contract`.
 
 ### Task 2: Pin and describe the package toolchain
 
@@ -53,10 +53,10 @@
 - Consumes: uv project configuration and uv-build backend metadata
 - Produces: uv `==0.13.6`, uv-build `>=0.13.0,<0.14.0`, complete description and MIT license metadata
 
-- [ ] Replace placeholder metadata, add the MIT license declaration, configure uv `required-version`, and add the license file.
-- [ ] Regenerate the lockfile with uv 0.13.6.
-- [ ] Run `uv lock --check` with uv 0.13.6 and verify the build emits no version-range warning.
-- [ ] Commit as `chore: pin packaging toolchain`.
+- [x] Replace placeholder metadata, add the MIT license declaration, configure uv `required-version`, and add the license file.
+- [x] Regenerate the lockfile with uv 0.13.6 (no content change was required).
+- [x] Run `uv lock --check` with uv 0.13.6 and verify the build emits no version-range warning.
+- [x] Commit as `chore: pin packaging toolchain`.
 
 ### Task 3: Make packaging part of the shared quality gate
 
@@ -71,8 +71,8 @@
 - Consumes: the pinned uv project and built wheel
 - Produces: `just package`, locked `just ci`, and setup/build documentation
 
-- [ ] Add a `package` recipe that builds distributions and imports the wheel in an isolated no-project environment.
-- [ ] Include `package` in `ci`, set `UV_LOCKED=1` in GitHub Actions, and have setup-uv read the project version pin.
-- [ ] Document locked setup, package verification, supported Python policy, metadata adaptation, and licensing.
-- [ ] Run the complete gate with uv 0.13.6 and confirm the source tree remains unchanged except for intended files.
-- [ ] Commit as `ci: verify locked install and wheel`.
+- [x] Add a `package` recipe that builds distributions and imports the wheel in an isolated no-project environment.
+- [x] Include `package` in `ci`, set `UV_LOCKED=1` in GitHub Actions, and have setup-uv read the project version pin.
+- [x] Document locked setup, package verification, supported Python policy, metadata adaptation, and licensing.
+- [x] Run the complete gate with uv 0.13.6 and confirm the source tree remains unchanged except for intended files.
+- [x] Commit as `ci: verify locked install and wheel`.

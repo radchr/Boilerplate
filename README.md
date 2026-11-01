@@ -6,14 +6,14 @@ can become a library, CLI, service, or other application later.
 
 ## Requirements
 
-- Python 3.13
-- [uv](https://docs.astral.sh/uv/)
+- Python 3.13 or newer
+- [uv 0.13.6](https://docs.astral.sh/uv/) (enforced by project metadata)
 - [just](https://just.systems/)
 
 ## Quick start
 
-```powershell
-uv sync --all-groups
+```console
+uv sync --locked --all-groups
 uv run pre-commit install
 just fix
 just ci
@@ -26,10 +26,13 @@ just ci
 | `just fix` | Apply safe Ruff fixes and format the project. |
 | `just check` | Check formatting, linting, and types without changing files. |
 | `just test` | Run tests and show missing coverage lines. |
+| `just package` | Build distributions and import the wheel in isolation. |
 | `just ci` | Run the complete, non-mutating local quality gate. |
 
-`just ci` checks formatting, linting, types, and coverage-backed tests. It is
-a useful guardrail, not a proof that the implementation or its requirements
+Every recipe exports `UV_LOCKED=1`, so an out-of-date lockfile fails instead
+of being rewritten. `just ci` checks formatting, linting, types,
+coverage-backed tests, distribution builds, and an isolated wheel import. It
+is a useful guardrail, not a proof that the implementation or its requirements
 are correct.
 
 ## Package layout
@@ -52,6 +55,18 @@ Use `.env` for local secrets and machine-specific values. It is ignored by
 Git. Copy `.env.example` when a future application needs configuration, and
 keep the committed example value-free. Tests must use explicit fixtures or
 `monkeypatch`, never a developer's real `.env`.
+
+## Adapt the template
+
+Before starting product work, replace the project name, import package,
+description, author, and version in `pyproject.toml`; update the package and
+test directories to match. The template uses the MIT license, so replace
+`LICENSE` and the project license metadata if the derived project needs a
+different license.
+
+Python 3.13 is the tested baseline. The package metadata permits newer Python
+versions, but projects that promise compatibility with several versions should
+add those versions to the CI matrix.
 
 ## Add tools when the code needs them
 

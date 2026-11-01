@@ -10,9 +10,13 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    env:
+      UV_LOCKED: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
+        with:
+          version-file: pyproject.toml
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
