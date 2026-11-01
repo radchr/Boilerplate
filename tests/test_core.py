@@ -21,6 +21,10 @@ def test_clamp_result_is_within_a_valid_interval(
 ) -> None:
     lower, upper = sorted((lower, upper))
     result = clamp(value, lower, upper)
-    assert lower <= result <= upper
-    if lower <= value <= upper:
-        assert result == value
+    if value < lower:
+        expected = lower
+    elif value > upper:
+        expected = upper
+    else:
+        expected = value
+    assert result == expected
