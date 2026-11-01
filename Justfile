@@ -22,7 +22,7 @@ package:
     test "${#wheels[@]}" -eq 1
     test -f "${wheels[0]}"
     unset UV_LOCKED
-    uv run --isolated --no-project --with "${wheels[0]}" python -c \
+    uv run --isolated --no-project --with "${wheels[0]}" python -I -c \
         'from boilerplate import clamp; assert clamp(12, 0, 10) == 10'
 
 ci: check test package
